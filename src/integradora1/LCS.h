@@ -1,5 +1,4 @@
-#ifndef LCS_
-#define LCS_
+#pragma once
 
 #include "FileReader.h"
 #include <iostream>
@@ -66,4 +65,3 @@ namespace test
     }
 }
 
-#endif

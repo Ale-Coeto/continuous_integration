@@ -1,92 +1,92 @@
-#include <filesystem>
-#include <fstream>
+// Oscar Arreola (A01178076), Mariana Amy Martínez (A00836245) y Alejandra Coeto (A01285221)
+// Última modificación: Domingo 6 de Octubre
+// Programa para leer archivos de transmisión y comprobar que no contengan código malicioso,
+// revisar similitud y comprobar palíndromos
+
+// Las explicaciones de la complejidad temporal vienen en cada una de las implementaciones de los algoritmos
+
 #include <iostream>
+#include "FileReader.h"
+#include "Kmp.h"
+#include "Lcs.h"
+#include "palindrome.h"
 
-#include <cxxopts.hpp>
-#include <fmt/format.h>
-#include <nlohmann/json.hpp>
-#include <spdlog/spdlog.h>
+using namespace std;
 
-#include "config.hpp"
-#include "foo.h"
-
-using json = nlohmann::json;
-namespace fs = std::filesystem;
-
-int main(int argc, char **argv)
+void containedText(vector<string> &transmissions, vector<string> &mcodes)
 {
-    std::cout << "JSON: " << NLOHMANN_JSON_VERSION_MAJOR << "."
-              << NLOHMANN_JSON_VERSION_MINOR << "."
-              << NLOHMANN_JSON_VERSION_PATCH << '\n';
-    std::cout << "FMT: " << FMT_VERSION << '\n';
-    std::cout << "CXXOPTS: " << CXXOPTS__VERSION_MAJOR << "."
-              << CXXOPTS__VERSION_MINOR << "." << CXXOPTS__VERSION_PATCH
-              << '\n';
-    std::cout << "SPDLOG: " << SPDLOG_VER_MAJOR << "." << SPDLOG_VER_MINOR
-              << "." << SPDLOG_VER_PATCH << '\n';
-    std::cout << "\n\nUsage Example:\n";
+    vector<vector<int> > mcodesPre;
 
-    // Compiler Warning and clang tidy error
-    // std::int32_t i = 0;
-
-    // Adress Sanitizer should see this
-    // char x[10];
-    // x[11] = 1;
-
-    const auto welcome_message =
-        fmt::format("Welcome to {} v{}\n", project_name, project_version);
-    spdlog::info(welcome_message);
-
-    cxxopts::Options options(project_name.data(), welcome_message);
-
-    options.add_options("arguments")("h,help", "Print usage")(
-        "f,filename",
-        "File name",
-        cxxopts::value<std::string>())(
-        "v,verbose",
-        "Verbose output",
-        cxxopts::value<bool>()->default_value("false"));
-
-    auto result = options.parse(argc, argv);
-
-    if (argc == 1 || result.count("help"))
+    for (int i = 0; i < 3; i++)
     {
-        std::cout << options.help() << '\n';
-        return 0;
+        mcodesPre.push_back(algorithms::preprocess(mcodes[i]));
     }
 
-    auto filename = std::string{};
-    auto verbose = false;
-
-    if (result.count("filename"))
+    for (auto transmission : transmissions)
     {
-        filename = result["filename"].as<std::string>();
+        for (int i = 0; i < mcodes.size(); i++)
+        {
+            vector<int> result = algorithms::containsText(transmission, mcodes[i], mcodesPre[i]);
+
+            if (result.size() <= 0)
+            {
+                cout << "false" << endl;
+            }
+            else
+            {
+                cout << "true ";
+                for (auto i : result)
+                {
+                    // 1-indexed
+                    cout << i + 1 << " ";
+                }
+                cout << endl;
+            }
+        }
     }
-    else
+}
+
+int main()
+{
+    // Read input
+    string transmission1 = FileReader::readFile("transmission1.txt");
+    string transmission2 = FileReader::readFile("transmission2.txt");
+    vector<string> transmissions = {transmission1, transmission2};
+
+    string mcode1 = FileReader::readFile("mcode1.txt");
+    string mcode2 = FileReader::readFile("mcode2.txt");
+    string mcode3 = FileReader::readFile("mcode3.txt");
+    vector<string> mcodes = {mcode1, mcode2, mcode3};
+
+    // Parte 1. Checar is los archivos de transmisión contienen código malicioso
+    cout << "Parte 1:" << endl;
+    containedText(transmissions, mcodes);
+
+    // Parte 2. Encontrar el palíndromo más largo en los archivos de transmisión
+    // Palindrome
+    cout << "Parte 2:" << endl;
+
+    pair<int, int> indices = algorithms::longestPalidrome(transmission1);
+    pair<int, int> indices2 = algorithms::longestPalidrome(transmission2);
+
+    cout << indices.first << " " << indices.second << " " << transmission1.substr(indices.first - 1, indices.second - indices.first + 1) << endl;
+    cout << indices2.first << " " << indices2.second << " " << transmission2.substr(indices2.first - 1, indices2.second - indices2.first + 1) << endl;
+
+    // Parte 3. Analizar que tan similares son los archivos de transmisión. Encontrar substring comun más largo.
+    // LCS
+    cout << "Parte 3:" << endl;
+    try
     {
-        return 1;
+        pair<int, int> indices = algorithms::longestCommonSubstring(transmission1, transmission2);
+        cout << indices.first << " " << indices.second << " " << transmission1.substr(indices.first - 1, indices.second - indices.first + 1) << endl;
     }
-
-    verbose = result["verbose"].as<bool>();
-
-    if (verbose)
+    catch (std::invalid_argument e)
     {
-        fmt::print("Opening file: {}\n", filename);
+        cout << "Error: " << e.what() << endl;
     }
-
-    auto ifs = std::ifstream{filename};
-
-    if (!ifs.is_open())
+    catch (exception e)
     {
-        return 1;
-    }
-
-    const auto parsed_data = json::parse(ifs);
-
-    if (verbose)
-    {
-        const auto name = parsed_data["name"];
-        fmt::print("Name: {}\n", name);
+        cout << "Hubo un error al buscar el substring más largo:" << e.what() << endl;
     }
 
     return 0;
