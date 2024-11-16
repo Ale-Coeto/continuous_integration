@@ -1,6 +1,6 @@
 #include <catch2/catch_test_macros.hpp>
 
-#include "Lcs.h"
+#include "l.h"
 // #include "Kmp.h"
 #include "integradora1.h"
 
