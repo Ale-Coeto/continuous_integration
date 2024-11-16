@@ -1,4 +1,5 @@
-#pragma once
+#ifndef LCS_
+#define LCS_
 
 #include "FileReader.h"
 #include <iostream>
@@ -18,7 +19,9 @@ namespace algorithms
         // Vector to size of the longest common substring
         vector<int> dp(s2.size() + 1, 0);
         int maxLen = 0;
-        pair<int, int> ans = {-1, -1}; // 0-indexed
+        pair<int, int> ans; // 0-indexed
+        ans.first = -1;
+        ans.second = -1;
 
         for (int i = 0; i < s1.size(); i++)
         {
@@ -65,3 +68,4 @@ namespace test
     }
 }
 
+#endif
