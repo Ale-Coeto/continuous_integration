@@ -8,13 +8,13 @@ add_executable("UnitTestBar" "test_bar.cc")
 target_link_libraries("UnitTestBar" PUBLIC "LibBar")
 target_link_libraries("UnitTestBar" PRIVATE Catch2::Catch2WithMain)
 
-add_executable("UnitTestIntegradora1" "test_integradora1.cc")
+add_executable("UnitTestIntegradora1" "test_integradora1.cpp")
 target_link_libraries("UnitTestIntegradora1" PUBLIC "LibIntegradora1")
 target_link_libraries("UnitTestIntegradora1" PRIVATE Catch2::Catch2WithMain)
-target_link_libraries(UnitTestIntegradora1
-    PUBLIC LibIntegradora1
-           Catch2::Catch2WithMain
-)
+# target_link_libraries(UnitTestIntegradora1
+#     PUBLIC LibIntegradora1
+#            Catch2::Catch2WithMain
+# )
 
 if(${ENABLE_WARNINGS})
     target_set_warnings(
