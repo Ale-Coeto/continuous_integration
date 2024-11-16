@@ -4,9 +4,9 @@ set(LIBRARY_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/Lcs.h")
 set(LIBRARY_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/Palindrome.h")
 set(LIBRARY_INCLUDES "./" "${CMAKE_BINARY_DIR}/configured_files/include")
 
-add_library("LibIntegradora1" STATIC ${LIBRARY_SOURCES} ${LIBRARY_HEADERS})
+add_library("LibIntegradora1" STATIC ${LIBRARY_HEADERS})
 target_include_directories("LibIntegradora1" PUBLIC ${LIBRARY_INCLUDES})
-target_include_directories(LibIntegradora1 PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+# target_include_directories(LibIntegradora1 PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 target_link_libraries(
     "LibIntegradora1"
