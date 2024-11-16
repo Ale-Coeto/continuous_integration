@@ -1,6 +1,6 @@
 #include <catch2/catch_test_macros.hpp>
 
-// #include "Lcs.h"
+#include "Lcs.h"
 // #include "Kmp.h"
 #include "integradora1.h"
 
@@ -13,12 +13,12 @@ TEST_CASE("longest_common_substring")
     REQUIRE(longest_common_substring("Hola", "o1243154145234LA") == "o");
 }
 
-// TEST_CASE("lcs") 
-// {
-//     REQUIRE(algorithms::longestCommonSubstring("abc", "abc") == {1,3});
-//     REQUIRE(algorithms::longestCommonSubstring("startingpoint", "start") == {1,5});
-//     REQUIRE(algorithms::longestCommonSubstring("abcabc", "bcabc") == {2,6}); 
-// }
+TEST_CASE("lcs") 
+{
+    REQUIRE(algorithms::longestCommonSubstring("abc", "abc") == {1,3});
+    REQUIRE(algorithms::longestCommonSubstring("startingpoint", "start") == {1,5});
+    REQUIRE(algorithms::longestCommonSubstring("abcabc", "bcabc") == {2,6}); 
+}
 
 // TEST_CASE("KMP Algorithm Tests") {
 //     algorithms algo;
