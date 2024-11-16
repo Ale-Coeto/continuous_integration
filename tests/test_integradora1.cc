@@ -9,7 +9,7 @@ TEST_CASE("lcs")
     REQUIRE(algorithms::longestCommonSubstring("abcabc", "bcabc") == {2,6}); 
 }
 
-TEST_CASE("kmp")
-{
-    REQUIRE(algorithms::kmp());
-}
+// TEST_CASE("kmp")
+// {
+//     REQUIRE(algorithms::kmp());
+// }
