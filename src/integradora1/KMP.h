@@ -1,5 +1,4 @@
-#ifndef KMP_
-#define KMP_
+#pragma once
 
 #include <iostream>
 #include <vector>
@@ -72,5 +71,3 @@ namespace algorithms
     }
 
 };
-
-#endif // KMP

@@ -1,7 +1,7 @@
 #include "FileReader.h"
 #include "Kmp.h"
 #include "Lcs.h"
-#include "longest_palindrome.h"
+#include "Palindrome.h"
 #include <iostream>
 
 using namespace std;
