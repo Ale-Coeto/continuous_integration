@@ -9,7 +9,42 @@ TEST_CASE("lcs")
     REQUIRE(algorithms::longestCommonSubstring("abcabc", "bcabc") == {2,6}); 
 }
 
-// TEST_CASE("kmp")
-// {
-//     REQUIRE(algorithms::kmp());
-// }
+TEST_CASE("KMP Algorithm Tests") {
+    algorithms algo;
+
+    SECTION("Single match") {
+        std::string text = "ababcabcababc";
+        std::string pattern = "abc";
+        std::vector<int> lps = algo.preprocess(pattern);
+        std::vector<int> result = algo.containsText(text, pattern, lps);
+
+        REQUIRE(result == std::vector<int>{2, 5, 10});
+    }
+
+    SECTION("Multiple matches") {
+        std::string text = "aaaaa";
+        std::string pattern = "aa";
+        std::vector<int> lps = algo.preprocess(pattern);
+        std::vector<int> result = algo.containsText(text, pattern, lps);
+
+        REQUIRE(result == std::vector<int>{0, 1, 2, 3});
+    }
+
+    SECTION("No match") {
+        std::string text = "abcdef";
+        std::string pattern = "gh";
+        std::vector<int> lps = algo.preprocess(pattern);
+        std::vector<int> result = algo.containsText(text, pattern, lps);
+
+        REQUIRE(result.empty());
+    }
+
+    SECTION("Pattern equals text") {
+        std::string text = "exact";
+        std::string pattern = "exact";
+        std::vector<int> lps = algo.preprocess(pattern);
+        std::vector<int> result = algo.containsText(text, pattern, lps);
+
+        REQUIRE(result == std::vector<int>{0});
+    }
+}

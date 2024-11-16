@@ -158,6 +158,6 @@ install(
     RUNTIME DESTINATION bin)
 
 install(
-    TARGETS "LibFoo" "LibBar"
+    TARGETS "LibFoo" "LibBar" "LibIntegradora1"
     ARCHIVE DESTINATION lib
     LIBRARY DESTINATION lib)
