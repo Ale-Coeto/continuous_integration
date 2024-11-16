@@ -1,5 +1,5 @@
 #include "FileReader.h"
-#include "Kmp.h"
+#include "k.h"
 #include "Lcs.h"
 #include "Palindrome.h"
 #include <iostream>
