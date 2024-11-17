@@ -55,17 +55,17 @@ namespace algorithms
 };
 
 // tests con el archivo transmission1.txt y transmission2.txt
-namespace test
-{
-    void lcs_test()
-    {
-        string test = FileReader::readFile("transmission1.txt");
-        string test2 = FileReader::readFile("transmission2.txt");
+// namespace test
+// {
+//     void lcs_test()
+//     {
+//         string test = FileReader::readFile("transmission1.txt");
+//         string test2 = FileReader::readFile("transmission2.txt");
 
-        pair<int, int> indices = algorithms::longestCommonSubstring(test, test2);
+//         pair<int, int> indices = algorithms::longestCommonSubstring(test, test2);
 
-        cout << indices.first << " " << indices.second << " " << test.substr(indices.first - 1, indices.second - indices.first + 1) << endl;
-    }
-}
+//         cout << indices.first << " " << indices.second << " " << test.substr(indices.first - 1, indices.second - indices.first + 1) << endl;
+//     }
+// }
 
 #endif
