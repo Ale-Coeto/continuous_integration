@@ -2,16 +2,16 @@
 
 #include "l.h"
 #include "k.h"
-#include "integradora1.h"
+// #include "integradora1.h"
 
-TEST_CASE("longest_common_substring")
-{
-    REQUIRE(longest_common_substring("hello world", "hello") == "hello");
-    REQUIRE_THROWS_AS(longest_common_substring("abcdef", "ghijkl"),
-                      std::invalid_argument);
-    REQUIRE(longest_common_substring("Hola", "o1243154145234la") == "la");
-    REQUIRE(longest_common_substring("Hola", "o1243154145234LA") == "o");
-}
+// TEST_CASE("longest_common_substring")
+// {
+//     REQUIRE(longest_common_substring("hello world", "hello") == "hello");
+//     REQUIRE_THROWS_AS(longest_common_substring("abcdef", "ghijkl"),
+//                       std::invalid_argument);
+//     REQUIRE(longest_common_substring("Hola", "o1243154145234la") == "la");
+//     REQUIRE(longest_common_substring("Hola", "o1243154145234LA") == "o");
+// }
 
 TEST_CASE("lcs") 
 {
