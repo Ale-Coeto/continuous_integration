@@ -1,7 +1,7 @@
 #include <catch2/catch_test_macros.hpp>
 
 #include "l.h"
-// #include "Kmp.h"
+#include "k.h"
 #include "integradora1.h"
 
 TEST_CASE("longest_common_substring")
@@ -20,42 +20,42 @@ TEST_CASE("lcs")
     REQUIRE(algorithms::longestCommonSubstring("abcabc", "bcabc") == {2,6}); 
 }
 
-// TEST_CASE("KMP Algorithm Tests") {
-//     algorithms algo;
+TEST_CASE("KMP Algorithm Tests") {
+    algorithms algo;
 
-//     SECTION("Single match") {
-//         std::string text = "ababcabcababc";
-//         std::string pattern = "abc";
-//         std::vector<int> lps = algo.preprocess(pattern);
-//         std::vector<int> result = algo.containsText(text, pattern, lps);
+    SECTION("Single match") {
+        std::string text = "ababcabcababc";
+        std::string pattern = "abc";
+        std::vector<int> lps = algo.preprocess(pattern);
+        std::vector<int> result = algo.containsText(text, pattern, lps);
 
-//         REQUIRE(result == std::vector<int>{2, 5, 10});
-//     }
+        REQUIRE(result == std::vector<int>{2, 5, 10});
+    }
 
-//     SECTION("Multiple matches") {
-//         std::string text = "aaaaa";
-//         std::string pattern = "aa";
-//         std::vector<int> lps = algo.preprocess(pattern);
-//         std::vector<int> result = algo.containsText(text, pattern, lps);
+    SECTION("Multiple matches") {
+        std::string text = "aaaaa";
+        std::string pattern = "aa";
+        std::vector<int> lps = algo.preprocess(pattern);
+        std::vector<int> result = algo.containsText(text, pattern, lps);
 
-//         REQUIRE(result == std::vector<int>{0, 1, 2, 3});
-//     }
+        REQUIRE(result == std::vector<int>{0, 1, 2, 3});
+    }
 
-//     SECTION("No match") {
-//         std::string text = "abcdef";
-//         std::string pattern = "gh";
-//         std::vector<int> lps = algo.preprocess(pattern);
-//         std::vector<int> result = algo.containsText(text, pattern, lps);
+    SECTION("No match") {
+        std::string text = "abcdef";
+        std::string pattern = "gh";
+        std::vector<int> lps = algo.preprocess(pattern);
+        std::vector<int> result = algo.containsText(text, pattern, lps);
 
-//         REQUIRE(result.empty());
-//     }
+        REQUIRE(result.empty());
+    }
 
-//     SECTION("Pattern equals text") {
-//         std::string text = "exact";
-//         std::string pattern = "exact";
-//         std::vector<int> lps = algo.preprocess(pattern);
-//         std::vector<int> result = algo.containsText(text, pattern, lps);
+    SECTION("Pattern equals text") {
+        std::string text = "exact";
+        std::string pattern = "exact";
+        std::vector<int> lps = algo.preprocess(pattern);
+        std::vector<int> result = algo.containsText(text, pattern, lps);
 
-//         REQUIRE(result == std::vector<int>{0});
-//     }
-// }
+        REQUIRE(result == std::vector<int>{0});
+    }
+}
