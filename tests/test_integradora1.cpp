@@ -6,11 +6,11 @@
 
 TEST_CASE("palindrome") {
     SECTION("single character") {
-        REQUIRE(algorithms::longestPalidrome("abaxyzzyxf") == std::pair<int, int>{3,8});
+        REQUIRE(algorithms::longestPalidrome("abaxyzzyxf") == std::pair<int, int>{4,9});
     }
 
     SECTION("word") {
-        REQUIRE(algorithms::longestPalidrome("racecar") == std::pair<int, int>{0,6});
+        REQUIRE(algorithms::longestPalidrome("racecar") == std::pair<int, int>{1,7});
     }
 }
 
