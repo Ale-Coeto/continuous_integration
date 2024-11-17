@@ -2,26 +2,23 @@
 
 #include "l.h"
 #include "k.h"
-// #include "integradora1.h"
+#include "Palindrome.h"
 
-// TEST_CASE("longest_common_substring")
-// {
-//     REQUIRE(longest_common_substring("hello world", "hello") == "hello");
-//     REQUIRE_THROWS_AS(longest_common_substring("abcdef", "ghijkl"),
-//                       std::invalid_argument);
-//     REQUIRE(longest_common_substring("Hola", "o1243154145234la") == "la");
-//     REQUIRE(longest_common_substring("Hola", "o1243154145234LA") == "o");
-// }
+TEST_CASE("palindrome") {
+    SECTION("single character") {
+        REQUIRE(algorithms::longestPalidrome("a") == std::pair<int, int>{0, 0});
+    }
+
+    SECTION("word") {
+        REQUIRE(algorithms::longestPalidrome("aabbbaacdd") == std::pair<int, int>{2, 7});
+    }
+}
 
 TEST_CASE("lcs") 
 {
-    
-    SECTION("same word") {
-        std::pair<int,int> result = {1,3};
-        REQUIRE(algorithms::longestCommonSubstring("abc", "abc") == result);
-    }
-    // REQUIRE(algorithms::longestCommonSubstring("startingpoint", "start") == {1,5});
-    // REQUIRE(algorithms::longestCommonSubstring("abcabc", "bcabc") == {2,6}); 
+    REQUIRE(algorithms::longestCommonSubstring("abcabc", "bcabc") == std::pair<int,int>{2,6});
+    REQUIRE(algorithms::longestCommonSubstring("startingpoint", "start") == std::pair<int,int>{1,5});
+    REQUIRE(algorithms::longestCommonSubstring("abc", "abc") == std::pair<int,int>{1,3});
 }
 
 TEST_CASE("KMP Algorithm Tests") {
